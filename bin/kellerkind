@@ -11,7 +11,9 @@ REQUIRED_ARGS = {
 
 opts = Trollop::options do
   banner <<-EOS
+    Mongodb archiving tool.
 
+    Dumps mongodb databases and archives them. Nothing more. Neat, isn't it?
   EOS
 
   opt :mongo_db,        "mongo database to dump",         :type => :string
