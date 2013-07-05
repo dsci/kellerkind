@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "kellerkind"
   gem.homepage = "http://github.com/dsci/kellerkind"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Mongodb archiving tool.}
+  gem.description = %Q{Dumps mongodb databases and archives them.}
   gem.email = "dsci@code79.net"
   gem.authors = ["Daniel Schmidt"]
   # dependencies defined in Gemfile
