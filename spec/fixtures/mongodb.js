@@ -4,5 +4,5 @@ var data          = {
                       "title" : "10 Uhr zwanzig"
                     }
 
-kellerkindDb.tests.insert(obj);
+kellerkindDb.tests.insert(data);
 

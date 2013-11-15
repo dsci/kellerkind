@@ -118,7 +118,7 @@ describe Kellerkind::Mongo do
       end
 
       before do
-        js_path = File.expand_path(File.join(__FILE__,'..','..','fixtures'))
+        js_path = File.expand_path(File.join(__FILE__,'..','..','..','fixtures'))
         system("`which mongo` #{js_path}/mongodb.js")
       end
 
