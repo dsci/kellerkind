@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe Kellerkind::Compress do
 
-  it{ should respond_to(:path) }
-  it{ should respond_to(:database_name) }
+  it{ should respond_to(:source_path) }
+  it{ should respond_to(:target_path) }
+  it{ should respond_to(:tarball_prefix)}
 
   describe "instance methods" do
     let(:out_dir) do
@@ -11,8 +12,8 @@ describe Kellerkind::Compress do
     end
     let(:attributes) do
       {
-        :database_name   => "test",
-        :path            => out_dir
+        :tarball_prefix   => "test",
+        :target_path      => out_dir
       }
     end
 
@@ -22,18 +23,20 @@ describe Kellerkind::Compress do
       subject{ Kellerkind::Compress.new(attributes) }
 
       it "then initializes the instance with the attributes values" do
-        subject.database_name.should eq attributes[:database_name]
-        subject.path.should eq attributes[:path]
+        subject.target_path.should eq attributes[:target_path]
+        subject.tarball_prefix.should eq attributes[:tarball_prefix]
       end
     end
 
     describe "#gzip" do
       let(:test_dump) do
-        File.join(out_dir, attributes[:database_name])
+        File.join(out_dir, "kellerkindTest")
       end
 
       let(:compress) do
-        Kellerkind::Compress.new(:path => out_dir, :database_name => "test")
+        Kellerkind::Compress.new(:target_path     => out_dir,
+                                 :source_path     => test_dump,
+                                 :tarball_prefix  => "test")
       end
 
       before do
@@ -48,7 +51,7 @@ describe Kellerkind::Compress do
       end
 
       it "tars and gzip the given database dump" do
-        Dir["#{out_dir}/#{compress.database_name}_*.tar.gz"].should have(1).item
+        Dir["#{out_dir}/#{compress.tarball_prefix}_*.tar.gz"].should have(1).item
       end
 
     end

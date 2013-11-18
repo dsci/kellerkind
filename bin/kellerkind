@@ -5,15 +5,23 @@ $LOAD_PATH.unshift(lib) if File.directory?(lib) && !$LOAD_PATH.include?(lib)
 require 'kellerkind'
 
 REQUIRED_ARGS = {
-    :mongo_db => %Q{You must specify a mongo database! },
-    :out      => %Q{You must specify a path the dump should saved to! }
-}
+    :mongodb => {
+      :mongo_db => %Q{You must specify a mongo database! },
+      :out      => %Q{You must specify a path the dump should saved to! }
+    },
+    :log  => {
+      :files => %Q{You must specifiy at least one file! }
+    }
+
+  }
+
 
 opts = Trollop::options do
   banner <<-EOS
-    Mongodb archiving tool.
+    Archiving tool.
 
-    Dumps mongodb databases and archives them. Nothing more. Neat, isn't it?
+    Dumps mongodb databases and archives them. Compresses files and archives
+    them. Nothing more. Neat, isn't it?
   EOS
 
   opt :mongo_db,        "mongo database to dump",         :type => :string
@@ -23,15 +31,38 @@ opts = Trollop::options do
   opt :mongo_password,  "mongo password",                 :type => :string
   opt :mongo_port,      "mongo server port",              :type => :string,
                                                           :default => "27017"
-  opt :out,             "path to dump to",                :type => :string
-  opt :compress,        "use gzip compression?",          :type => :boolean,
-                                                          :default => false
+  opt :out,             "path output directory",                :type => :string
+
+  opt :compress,        "use gzip compression? (files are always gzipped)",
+      :type => :boolean,
+      :default => false
+
   opt :remove_dump,     "remove dump after compression?", :type => :boolean,
                                                           :default => true
+  opt :files,           "files to compress",   :type => :strings
+
+  opt :type,            "the type kellerkind should handles: [mongodbd, files]",
+      :type => :string,
+      :default => "mongodb"
+
+  opt :recreate,        "Recreate files after moving and compressing (only effects :files type)",
+      :type     => :boolean,
+      :default  => true
+
+  opt :verbose,         "Verbose output",
+      :type     => :boolean,
+      :default  => false
 end
 
 REQUIRED_ARGS.each_pair do |key,value|
-  Trollop::die key, value unless opts[key]
+  type        = key
+  type_config = value
+  used_type   = opts[:type]
+  if used_type.eql?(type.to_s)
+    type_config.each_pair do |type_key, type_value|
+      Trollop::die type_key, type_value unless opts[type_key]
+    end
+  end
 end
 
 Kellerkind::Runner.exec(opts)

@@ -1,3 +1,5 @@
+spec/fixtures/*.tar.gz
+
 # rcov generated
 coverage
 coverage.data

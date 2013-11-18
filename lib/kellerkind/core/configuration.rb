@@ -60,5 +60,17 @@ module Kellerkind
       %Q{ -- Dumping of #{database} done ...}
     end
 
+    # Internal: Sets if Kellerkind should be talkative or not.
+    #
+    # flag - Boolean, true if Kellerkind should generate output, false if not.
+    def verbose_output=(flag)
+      @verbose_output = flag
+    end
+
+    # Internal: Checks if Kellerkind should be verbose or not.
+    def verbose?
+      @verbose_output
+    end
+
   end
 end

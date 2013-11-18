@@ -1,6 +1,14 @@
 # kellerkind
 
-Kellerkind is just a Ruby script that runs mongodump and tars the resulting dump.
+[![Build Status](https://travis-ci.org/dsci/kellerkind.png?branch=master)](https://travis-ci.org/dsci/kellerkind)
+
+Kellerkind is a Ruby application that runs several backup actions. 
+
+|Type | Status| Cli flag
+|:----|-------:|--------:|
+|MongoDB Dumps | Done | ```--type mongodb```|
+|(Log)File Backup | Done | ```--type files ```|
+
 
 It should be used with its cli but it's also possible to use it with its API.
 
@@ -22,11 +30,29 @@ to the arguments you could specify.
 
 **Example**
 
+*Dumping a Mongo database and compressing the dump*
+
 ```
-kellerkind --mongo-db appDatabase --mongo-host linus.mongohq.com --mongo-port 10010 --mongo-username myUser --mongo-password myCrypticPassword --compress true --out $HOME/tmp/mongodump
+kellerkind --type mongodb --mongo-db appDatabase --mongo-host linus.mongohq.com --mongo-port 10010 --mongo-username myUser --mongo-password myCrypticPassword --compress true --out $HOME/tmp/mongodump
 ```
 
 Dumps a database hosted at MongoHQ to <code>$HOME/tmp/mongodump</code> and create a tar file of this dump.
+
+*Backing up several log files*
+
+```
+kellerkind --type files --files $HOME/rails/my_app/log/production.log $HOME/logs/unicorn.stdout.log --out $HOME/tmp/log_backups --verbose true 
+```
+
+Backups and compresses ```$HOME/rails/my_app/log/production.log``` and ```$HOME/logs/unicorn.stdout.log``` to ```$HOME/tmp/log_backups```, deletes the original files and recreates them as blank files.
+
+## Tests
+
+Run 
+
+```
+rspec spec/
+```
 
 ## Contributing to kellerkind
 
