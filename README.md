@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/dsci/kellerkind.png?branch=master)](https://travis-ci.org/dsci/kellerkind)
 
-Kellerkind is a Ruby application that runs several backup actions. 
+Kellerkind is a Ruby application that runs several backup actions.
 
 |Type | Status| Cli flag
 |:----|-------:|--------:|
@@ -41,14 +41,14 @@ Dumps a database hosted at MongoHQ to <code>$HOME/tmp/mongodump</code> and creat
 *Backing up several log files*
 
 ```
-kellerkind --type files --files $HOME/rails/my_app/log/production.log $HOME/logs/unicorn.stdout.log --out $HOME/tmp/log_backups --verbose true 
+kellerkind --type log --files $HOME/rails/my_app/log/production.log $HOME/logs/unicorn.stdout.log --out $HOME/tmp/log_backups --verbose true
 ```
 
 Backups and compresses ```$HOME/rails/my_app/log/production.log``` and ```$HOME/logs/unicorn.stdout.log``` to ```$HOME/tmp/log_backups```, deletes the original files and recreates them as blank files.
 
 ## Tests
 
-Run 
+Run
 
 ```
 rspec spec/

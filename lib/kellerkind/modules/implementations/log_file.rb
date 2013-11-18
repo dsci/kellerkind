@@ -8,7 +8,7 @@ module Kellerkind
   class LogFile < Set
 
     # A list of files (at least one)
-    attribute :paths,     Array
+    attribute :files,     Array
     # File path location for compressed backups
     attribute :out,       String
     # Indicator if list of files should be recreated after compressing as
@@ -18,7 +18,7 @@ module Kellerkind
     # Public: Compresses the backup, removes the files and (optional) recreates
     # them as blank files.
     def archive
-      paths.each do |path|
+      files.each do |path|
         path_obj  = Pathname.new(path)
         path_name = path_obj.dirname.to_s
         compress  = Kellerkind::Compress.new(:target_path => out,

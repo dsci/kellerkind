@@ -41,7 +41,7 @@ opts = Trollop::options do
                                                           :default => true
   opt :files,           "files to compress",   :type => :strings
 
-  opt :type,            "the type kellerkind should handles: [mongodbd, files]",
+  opt :type,            "the type kellerkind should handles: [mongodbd, log]",
       :type => :string,
       :default => "mongodb"
 

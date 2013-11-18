@@ -5,7 +5,7 @@ describe Kellerkind::LogFile do
     File.expand_path(File.join(File.dirname(__FILE__),"..", '..',"tmp"))
   end
 
-  it { should respond_to(:paths) }
+  it { should respond_to(:files) }
   it { should respond_to(:out) }
   it { should respond_to(:recreate) }
 
@@ -14,7 +14,7 @@ describe Kellerkind::LogFile do
 
     let(:attributes) do
       {
-        :paths    => ["$HOME/tmp/kellerkind.lock"],
+        :files    => ["$HOME/tmp/kellerkind.lock"],
         :out      => out_dir,
         :recreate => true
       }
@@ -31,7 +31,7 @@ describe Kellerkind::LogFile do
           subject{ Kellerkind::LogFile.new(attributes) }
 
           it "then initializes the instance with the attribute values" do
-            subject.paths.should eq attributes[:paths]
+            subject.files.should eq attributes[:files]
             subject.out.should eq attributes[:out]
             subject.recreate.should eq attributes[:recreate]
           end
@@ -51,7 +51,7 @@ describe Kellerkind::LogFile do
 
       before do
         FileUtils.touch(sample_file)
-        attributes[:paths] = [sample_file]
+        attributes[:files] = [sample_file]
       end
 
       after do
