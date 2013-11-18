@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daniel Schmidt"]
-  s.date = "2013-07-08"
+  s.date = "2013-11-18"
   s.description = "Dumps mongodb databases and archives them."
   s.email = "dsci@code79.net"
   s.executables = ["kellerkind"]
@@ -20,8 +20,8 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     ".rspec",
+    ".travis.yml",
     "Gemfile",
-    "Gemfile.lock",
     "LICENSE.txt",
     "README.md",
     "Rakefile",
@@ -32,18 +32,24 @@ Gem::Specification.new do |s|
     "lib/kellerkind/core/configuration.rb",
     "lib/kellerkind/core/ext.rb",
     "lib/kellerkind/core/set.rb",
-    "lib/kellerkind/database/mongo.rb",
     "lib/kellerkind/dependencies.rb",
+    "lib/kellerkind/modules/implementations/log_file.rb",
+    "lib/kellerkind/modules/implementations/mongo.rb",
+    "lib/kellerkind/modules/log.rb",
+    "lib/kellerkind/modules/modules.rb",
+    "lib/kellerkind/modules/mongodb.rb",
     "lib/kellerkind/system/compress.rb",
     "lib/kellerkind/system/die.rb",
     "lib/kellerkind/system/lock.rb",
+    "lib/kellerkind/system/process.rb",
     "lib/kellerkind/system/runner.rb",
     "spec/fixtures/mongodb.js",
-    "spec/kellerkind/database/mongo_spec.rb",
+    "spec/kellerkind/modules/implementations/log_file_spec.rb",
+    "spec/kellerkind/modules/implementations/mongo_spec.rb",
+    "spec/kellerkind/modules/mongodb_spec.rb",
     "spec/kellerkind/system/compress_spec.rb",
     "spec/kellerkind/system/lock_spec.rb",
     "spec/kellerkind/tmp/.gitkeep",
-    "spec/kellerkind_spec.rb",
     "spec/spec_helper.rb"
   ]
   s.homepage = "http://github.com/dsci/kellerkind"
@@ -82,3 +88,4 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
   end
 end
+
