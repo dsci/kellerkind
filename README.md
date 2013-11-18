@@ -1,6 +1,6 @@
 # kellerkind
 
-[![Build Status](https://travis-ci.org/dsci/kellerkind.png?branch=master)](https://travis-ci.org/dsci/kellerkind)
+[![Build Status](https://travis-ci.org/dsci/kellerkind.png?branch=master)](https://travis-ci.org/dsci/kellerkind) [![Gem Version](https://badge.fury.io/rb/kellerkind.png)](http://badge.fury.io/rb/kellerkind)
 
 Kellerkind is a Ruby application that runs several backup actions.
 
